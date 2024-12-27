@@ -14,11 +14,10 @@ class Equation:
         self.operands = operands
 
     def test_equation(self, operators: Iterable[Operator]) -> bool:
-        # Generate all possible permutations
-        perms = list(product(operators, repeat=len(self.operands) - 1))
+        # TODO: Replace with recursive function that checks last operand first
 
-        # For each, perform the calculation
-        for perm in perms:
+        # For each permutation, perform the calculation
+        for perm in product(operators, repeat=len(self.operands) - 1):
             running_calc = self.operands[0]
             for i, operator in enumerate(perm):
                 match operator:
