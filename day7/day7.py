@@ -1,5 +1,5 @@
 from time import perf_counter
-from equation import Equation
+from equation import Equation, Operator
 
 
 def read_input(filename: str):
@@ -20,15 +20,25 @@ def read_input(filename: str):
 def part1(equations: list[Equation]):
     total = 0
 
+    operators: set[Operator] = {'+', '*'}
+
     for equation in equations:
-        if equation.test_equation():
+        if equation.test_equation(operators):
             total += equation.target
 
     print("part 1:", total)
 
 
-def part2():
-    print("part 2:", 0)
+def part2(equations: list[Equation]):
+    total = 0
+
+    operators: set[Operator] = {'+', '*', '||'}
+
+    for equation in equations:
+        if equation.test_equation(operators):
+            total += equation.target
+
+    print("part 2:", total)
 
 
 def main():
@@ -45,7 +55,7 @@ def main():
     print(f"part 1: {round((end-start) * 1000)}ms")
 
     start = perf_counter()
-    part2()
+    part2(equations)
     end = perf_counter()
     print(f"part 2: {round((end-start) * 1000)}ms")
 

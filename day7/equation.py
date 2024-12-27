@@ -1,8 +1,8 @@
 from itertools import product
-from typing import Literal
+from typing import Iterable, Literal
 
 
-type Operator = Literal['+', '*']
+type Operator = Literal['+', '*', '||']
 
 
 class Equation:
@@ -13,9 +13,7 @@ class Equation:
         self.target = target
         self.operands = operands
 
-    def test_equation(self) -> bool:
-        operators: set[Operator] = {'+', '*'}
-
+    def test_equation(self, operators: Iterable[Operator]) -> bool:
         # Generate all possible permutations
         perms = list(product(operators, repeat=len(self.operands) - 1))
 
@@ -28,6 +26,9 @@ class Equation:
                         running_calc += self.operands[i + 1]
                     case '*':
                         running_calc *= self.operands[i + 1]
+                    case '||':
+                        running_calc = int(
+                            str(running_calc) + str(self.operands[i + 1]))
 
             if running_calc == self.target:
                 return True
