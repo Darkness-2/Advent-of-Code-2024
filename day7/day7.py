@@ -17,8 +17,14 @@ def read_input(filename: str):
     return equations
 
 
-def part1():
-    print("part 1:", 0)
+def part1(equations: list[Equation]):
+    total = 0
+
+    for equation in equations:
+        if equation.test_equation():
+            total += equation.target
+
+    print("part 1:", total)
 
 
 def part2():
@@ -26,15 +32,15 @@ def part2():
 
 
 def main():
-    filename = "day7/sample_input.txt"
+    filename = "day7/input.txt"
 
     start = perf_counter()
-    x = read_input(filename)
+    equations = read_input(filename)
     end = perf_counter()
     print(f"read input: {round((end-start) * 1000)}ms")
 
     start = perf_counter()
-    part1()
+    part1(equations)
     end = perf_counter()
     print(f"part 1: {round((end-start) * 1000)}ms")
 
