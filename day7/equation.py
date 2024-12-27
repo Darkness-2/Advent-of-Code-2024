@@ -15,6 +15,7 @@ class Equation:
 
     def test_equation(self, operators: Iterable[Operator]) -> bool:
         # TODO: Replace with recursive function that checks last operand first
+        # TODO: Multi-thread?
 
         # For each permutation, perform the calculation
         for perm in product(operators, repeat=len(self.operands) - 1):
