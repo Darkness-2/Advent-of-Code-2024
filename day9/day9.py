@@ -100,7 +100,7 @@ def part2(disk: list[int]):
         while beg_file_block_ptr >= 0 and disk[beg_file_block_ptr] == file_id:
             beg_file_block_ptr -= 1
 
-        # File exists from beg + 1:end
+        # File exists from beg + 1:end + 1
         file_size = end_file_block_ptr - beg_file_block_ptr
 
         # Find free space block that could fit the file
