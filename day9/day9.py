@@ -141,7 +141,7 @@ def part2(disk: list[int]):
 
 
 def main():
-    filename = "day9/input.txt"
+    filename = "day9/sample_input4.txt"
 
     start = perf_counter()
     disk = read_input(filename)
