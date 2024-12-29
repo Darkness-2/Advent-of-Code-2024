@@ -61,26 +61,26 @@ def part2(disk: list[int]):
     free_space_blocks: list[tuple[int, int]] = []
 
     # Identify the blocks of free space
-    free_space_ptr = 0
+    beg_free_space_ptr = 0
     while True:
         # Find beginning of free space
-        while free_space_ptr < len(disk) and disk[free_space_ptr] != -1:
-            free_space_ptr += 1
+        while beg_free_space_ptr < len(disk) and disk[beg_free_space_ptr] != -1:
+            beg_free_space_ptr += 1
 
         # Break out once no more free space
-        if free_space_ptr >= len(disk):
+        if beg_free_space_ptr >= len(disk):
             break
 
         # Find end of free space
-        end_free_space_ptr = free_space_ptr + 1
+        end_free_space_ptr = beg_free_space_ptr + 1
         while end_free_space_ptr < len(disk) and disk[end_free_space_ptr] == -1:
             end_free_space_ptr += 1
 
         # Add this free space
-        free_space_blocks.append((free_space_ptr, end_free_space_ptr))
+        free_space_blocks.append((beg_free_space_ptr, end_free_space_ptr))
 
         # Set ptr to the end to start again
-        free_space_ptr = end_free_space_ptr
+        beg_free_space_ptr = end_free_space_ptr
 
     # Identify file blocks and try to move them
     end_file_block_ptr = len(disk) - 1
