@@ -51,8 +51,35 @@ def part1(antennas: AntennaDict, rows: int, cols: int):
     print("part 1:", len(antinodes))
 
 
-def part2():
-    print("part 2:", 0)
+def part2(antennas: AntennaDict, rows: int, cols: int):
+    antinodes: set[Coordinate] = set()
+
+    # Create all pairs of antennas of same type and check their antinode positions
+    for antenna_type in antennas.keys():
+        for a, b in combinations(antennas[antenna_type], 2):
+            # Antennas themselves are antinodes
+            antinodes.add(a)
+            antinodes.add(b)
+
+            x_1, y_1 = a
+            x_2, y_2 = b
+
+            x_delta = x_2 - x_1
+            y_delta = y_2 - y_1
+
+            # Create radiating out from b
+            x_3, y_3 = x_2 + x_delta, y_2 + y_delta
+            while 0 <= x_3 < rows and 0 <= y_3 < cols:
+                antinodes.add((x_3, y_3))
+                x_3, y_3 = x_3 + x_delta, y_3 + y_delta
+
+            # Create radiating out from a
+            x_4, y_4 = x_1 - x_delta, y_1 - y_delta
+            while 0 <= x_4 < rows and 0 <= y_4 < cols:
+                antinodes.add((x_4, y_4))
+                x_4, y_4 = x_4 - x_delta, y_4 - y_delta
+
+    print("part 2:", len(antinodes))
 
 
 def main():
@@ -69,7 +96,7 @@ def main():
     print(f"part 1: {round((end-start) * 1000)}ms")
 
     start = perf_counter()
-    part2()
+    part2(antennas, rows, cols)
     end = perf_counter()
     print(f"part 2: {round((end-start) * 1000)}ms")
 
