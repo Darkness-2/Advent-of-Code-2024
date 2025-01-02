@@ -53,7 +53,7 @@ def part1(games: list[Game]):
         if r_a or r_b:
             continue
 
-        cost += int(a) * A_BUTTON_COST + int(b) * B_BUTTON_COST
+        cost += a * A_BUTTON_COST + b * B_BUTTON_COST
 
     print("part 1:", cost)
 
@@ -74,7 +74,7 @@ def part2(games: list[Game]):
         if r_a or r_b:
             continue
 
-        cost += int(a) * A_BUTTON_COST + int(b) * B_BUTTON_COST
+        cost += a * A_BUTTON_COST + b * B_BUTTON_COST
 
     print("part 2:", cost)
 
